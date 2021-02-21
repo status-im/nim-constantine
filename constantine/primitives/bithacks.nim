@@ -100,3 +100,6 @@ func hammingWeight*(x: uint64): int {.inline.} =
   v = (v and 0x3333333333333333'u64) + ((v shr 2'u64) and 0x3333333333333333'u64)
   v = (v + (v shr 4'u64) and 0x0F0F0F0F0F0F0F0F'u64)
   cast[int]((v * 0x0101010101010101'u64) shr 56'u64)
+
+func countLeadingZeros*[T: SomeUnsignedInt](x: T): T {.inline.} =
+  (8*sizeof(T)) - 1 - log2(x)
